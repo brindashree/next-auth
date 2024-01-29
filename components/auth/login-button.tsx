@@ -1,28 +1,33 @@
 "use client";
 
-import { Button } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 
 interface LoginButtonProps {
+  children: React.ReactNode;
   mode?: "modal" | "redirect";
   asChild?: boolean;
 }
 
-const LoginButton = ({ mode = "redirect", asChild }: LoginButtonProps) => {
+export const LoginButton = ({
+  children,
+  mode = "redirect",
+  asChild,
+}: LoginButtonProps) => {
   const router = useRouter();
 
   const onClick = () => {
     router.push("/auth/login");
   };
+
   if (mode === "modal") {
-    return <p>"TODO: implement modal"</p>;
+    return (
+      <p>"TODO</p>
+    );
   }
 
   return (
-    <Button size="lg" radius="sm" onClick={onClick}>
-      Sign In
-    </Button>
+    <span onClick={onClick} className="cursor-pointer">
+      {children}
+    </span>
   );
 };
-
-export default LoginButton;

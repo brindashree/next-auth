@@ -1,9 +1,14 @@
 "use client";
 
-import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/react";
 import { Header } from "./header";
 import Social from "./social";
 import BackButton from "./back-button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
 
 interface CardWrapperProps {
   children: React.ReactNode;
@@ -25,7 +30,7 @@ export const CardWrapper = ({
       <CardHeader>
         <Header label="Welcome Back" />
       </CardHeader>
-      <CardBody>{children}</CardBody>
+      <CardContent>{children}</CardContent>
       {showSocial && (
         <CardFooter>
           <Social />

@@ -1,4 +1,4 @@
-import { cn } from "@nextui-org/react";
+import { cn } from "@/lib/utils";
 import { Poppins } from "next/font/google";
 
 const font = Poppins({
