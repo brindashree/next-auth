@@ -26,7 +26,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
       password: hashedPassword,
     },
   });
-  console.log({res});
+
   // TODO: SEND verification token email
   return { success: "Account created!" };
 };
