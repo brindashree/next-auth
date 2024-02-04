@@ -1,6 +1,6 @@
 "use client";
 
-import { login } from "@/actions/login";
+import { reset } from "@/actions/reset";
 import { ResetSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useTransition } from "react";
@@ -19,7 +19,6 @@ import {
 } from "../ui/form";
 import { Input } from "../ui/input";
 import { CardWrapper } from "./card-wrapper";
-import { reset } from "@/actions/reset";
 
 const ResetForm = () => {
   const [isPending, startTransition] = useTransition();

@@ -1,5 +1,4 @@
 import { auth, signOut } from "@/auth";
-import React from "react";
 
 const Settings = async () => {
   const session = await auth();

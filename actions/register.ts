@@ -1,12 +1,12 @@
 "use server"; // makes sure server code is never bundles with client code"
 
-import { RegisterSchema } from "@/schemas";
-import * as z from "zod";
-import bcrypt from "bcryptjs";
-import { db } from "@/lib/db";
 import { getUserByEmail } from "@/data/user";
-import { generateVerificationToken } from "@/lib/token";
+import { db } from "@/lib/db";
 import { sendVerificationEmail } from "@/lib/mail";
+import { generateVerificationToken } from "@/lib/token";
+import { RegisterSchema } from "@/schemas";
+import bcrypt from "bcryptjs";
+import * as z from "zod";
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
   const validatedFields = RegisterSchema.safeParse(values);

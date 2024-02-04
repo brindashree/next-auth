@@ -1,10 +1,10 @@
 "use server";
 import { getUserByEmail } from "@/data/user";
+import { db } from "@/lib/db";
 import { getPasswordResetToken } from "@/lib/password-reset-token";
 import { NewPasswordSchema } from "@/schemas";
-import * as z from "zod";
 import bcrypt from "bcryptjs";
-import { db } from "@/lib/db";
+import * as z from "zod";
 
 export const newPassword = async (
   values: z.infer<typeof NewPasswordSchema>,
