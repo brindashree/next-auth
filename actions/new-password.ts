@@ -1,7 +1,7 @@
 "use server";
 import { getUserByEmail } from "@/data/user";
 import { db } from "@/lib/db";
-import { getPasswordResetToken } from "@/lib/password-reset-token";
+import { getPasswordResetToken } from "@/data/password-reset-token";
 import { NewPasswordSchema } from "@/schemas";
 import bcrypt from "bcryptjs";
 import * as z from "zod";

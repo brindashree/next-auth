@@ -4,6 +4,7 @@ import NextAuth from "next-auth";
 import authConfig from "./auth.config";
 import { db } from "./lib/db";
 import { getUserById } from "./data/user";
+import { getTwofactorConfirmationByUserID } from "./data/two-factor-confirmation";
 declare module "next-auth" {
   interface Session {
     user: {
@@ -36,12 +37,25 @@ export const {
       //Allow OAuth without email verification
       if (account?.provider !== "credentials") return true;
 
-      const existingUser = await getUserById(user?.id);
+      const existingUser = await getUserById(user.id);
 
       // Prevent sign in without email verification
       if (!existingUser?.emailVerified) return false;
 
-      // TODO: add 2FA check
+      if (existingUser.isTwoFactorEnabled) {
+        const twoFactorConfirmation = await getTwofactorConfirmationByUserID(
+          existingUser.id
+        );
+        if (!twoFactorConfirmation) {
+          return false;
+        }
+        // Delete two factor confirmation for the next sign in
+        await db.twoFactorConfirmation.delete({
+          where: {
+            id: twoFactorConfirmation.id,
+          },
+        });
+      }
 
       return true;
     },
