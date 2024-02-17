@@ -1,13 +1,18 @@
+import { SessionProvider } from "next-auth/react";
 import "./globals.css";
+import { auth } from "@/auth";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
   return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
+    <SessionProvider session={session}>
+      <html lang="en">
+        <body>{children}</body>
+      </html>
+    </SessionProvider>
   );
 }
