@@ -1,9 +1,7 @@
-"use client";
+import { currentRole } from "@/lib/auth";
 
-import { useCurrenRole } from "@/hooks/use-current-role";
-
-const AdminPage = () => {
-  const role = useCurrenRole();
+const AdminPage = async () => {
+  const role = await currentRole();
   return (
     <div>
       Current role:
