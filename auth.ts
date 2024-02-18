@@ -1,5 +1,5 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import NextAuth from "next-auth";
+import NextAuth, { Session } from "next-auth";
 import { UserRole } from "@prisma/client";
 import authConfig from "./auth.config";
 import { getTwofactorConfirmationByUserID } from "./data/two-factor-confirmation";
@@ -53,7 +53,7 @@ export const {
 
       return true;
     },
-    async session({ token, session }) {
+    async session({ token, session }: { session: Session; token?: any }) {
       if (token.sub && session.user) {
         session.user.id = token.sub;
       }
